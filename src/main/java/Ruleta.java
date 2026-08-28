@@ -174,6 +174,12 @@ public class Ruleta {
     public static void mostrarResultado(int numero, char tipo, int monto, boolean
             acierto) {
 // TODO: Mostrar los datos y el resultado de la ronda.
+        System.out.println("El número ganador es: " + numero);
+        if (acierto) {
+            System.out.println("¡Felicidades! Has ganado tu apuesta.");
+        } else {
+            System.out.println("Has perdido la apuesta.");
+        }
     }
     /**
      * Muestra estadísticas generales de todas las

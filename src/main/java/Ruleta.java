@@ -139,6 +139,9 @@ public class Ruleta {
      */
     public static boolean esRojo(int n) {
 // TODO: Buscar el número en el arreglo numerosRojos.
+        for (int i = 0; i < numerosRojos.length; i++) {
+            if (numerosRojos[i] == n) return true;
+        }
         return false;
     }
     /**
@@ -151,6 +154,14 @@ public class Ruleta {
      */
     public static void registrarResultado(int numero, int apuesta, boolean acierto) {
 // TODO: Guardar los datos sin superar MAX_HISTORIAL.
+        if (historialSize < MAX_HISTORIAL) {
+            historialNumeros[historialSize] = numero;
+            historialApuestas[historialSize] = apuesta;
+            historialAciertos[historialSize] = acierto;
+            historialSize++;
+        } else {
+            System.out.println("Historial lleno. No se pueden registrar más rondas.");
+        }
     }
     /**
      * Muestra en consola el resultado de la ronda.

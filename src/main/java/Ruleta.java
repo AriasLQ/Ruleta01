@@ -1,6 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 public class Ruleta {
+    public static final int NUMERO_CASILLAS = 37;
     public static final int MAX_HISTORIAL = 100;
     public static int[] historialNumeros = new int[MAX_HISTORIAL];
     public static int[] historialApuestas = new int[MAX_HISTORIAL];
@@ -98,8 +99,20 @@ public class Ruleta {
      */
     public static char leerTipoApuesta(Scanner in) {
 // TODO: Leer y validar el tipo de apuesta.
-        System.out.print("Tipo de apuesta (P: Par, I: Impar, R: Rojo, N: Negro): ");
-        return in.next().toUpperCase().charAt(0);
+        char tipo;
+        boolean esValido = false;
+        do {
+            System.out.print("Tipo de apuesta (P: Par, I: Impar, R: Rojo, N: Negro): ");
+            tipo = in.next().toUpperCase().charAt(0);
+
+            if (tipo == 'P' || tipo == 'I' || tipo == 'R' || tipo == 'N') {
+                esValido = true;
+            } else {
+                System.out.println("Opción incorrecta. Debe ingresar P, I, R o N.");
+            }
+        } while (!esValido);
+
+        return tipo;
     }
     /**
      * Simula el giro de la ruleta generando un número
@@ -107,11 +120,10 @@ public class Ruleta {
      *
      * @return número de la ruleta.
      */
-    public static final int numeroCasillas = 37;
 
     public static int girarRuleta() {
 // TODO: Generar y retornar un número entre 0 y 36.
-        return rng.nextInt(numeroCasillas);
+        return rng.nextInt(NUMERO_CASILLAS);
     }
     /**
      * Evalúa si la apuesta realizada por el jugador

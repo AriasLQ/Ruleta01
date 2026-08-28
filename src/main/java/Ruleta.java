@@ -187,5 +187,24 @@ public class Ruleta {
      */
     public static void mostrarEstadisticas() {
 // TODO: Calcular y mostrar las estadísticas acumuladas.
+        int montoTotal = 0;
+        int totalAciertos = 0;
+
+        for (int i = 0; i < historialSize; i++) {
+            montoTotal += historialApuestas[i];
+            if (historialAciertos[i]) {
+                totalAciertos++;
+            }
+        }
+
+        System.out.println("\n--- Estadísticas ---");
+        System.out.println("Rondas jugadas: " + historialSize);
+        System.out.println("Monto total apostado: " + montoTotal);
+        System.out.println("Cantidad total de aciertos: " + totalAciertos);
+
+        if (historialSize > 0) {
+            double porcentaje = (totalAciertos * 100.0) / historialSize;
+            System.out.println("Porcentaje de aciertos: " + porcentaje + "%");
+        }
     }
 }

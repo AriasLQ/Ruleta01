@@ -107,9 +107,11 @@ public class Ruleta {
      *
      * @return número de la ruleta.
      */
+    public static final int numeroCasillas = 37;
+
     public static int girarRuleta() {
 // TODO: Generar y retornar un número entre 0 y 36.
-        return 0;
+        return rng.nextInt(numeroCasillas);
     }
     /**
      * Evalúa si la apuesta realizada por el jugador

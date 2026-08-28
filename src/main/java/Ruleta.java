@@ -123,6 +123,12 @@ public class Ruleta {
      */
     public static boolean evaluarResultado(int numero, char tipo) {
 // TODO: Evaluar el resultado según el tipo de apuesta.
+        if (numero == 0) return false;
+
+        if (tipo == 'P') return numero % 2 == 0;
+        if (tipo == 'I') return numero % 2 != 0;
+        if (tipo == 'R') return esRojo(numero);
+        if (tipo == 'N') return !esRojo(numero);
         return false;
     }
     /**

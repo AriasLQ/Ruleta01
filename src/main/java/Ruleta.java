@@ -37,6 +37,11 @@ public class Ruleta {
      */
     public static void mostrarMenu() {
 // TODO: Mostrar las opciones disponibles para el usuario.
+        System.out.println("\n--- Casino Black Cat ---");
+        System.out.println("1. Iniciar ronda");
+        System.out.println("2. Ver estadísticas");
+        System.out.println("3. Salir");
+        System.out.print("Elija una opción: ");
     }
     /**
      * Lee la opción elegida por el usuario desde teclado.

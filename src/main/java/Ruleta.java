@@ -98,7 +98,8 @@ public class Ruleta {
      */
     public static char leerTipoApuesta(Scanner in) {
 // TODO: Leer y validar el tipo de apuesta.
-        return ’ ’;
+        System.out.print("Tipo de apuesta (P: Par, I: Impar, R: Rojo, N: Negro): ");
+        return in.next().toUpperCase().charAt(0);
     }
     /**
      * Simula el giro de la ruleta generando un número

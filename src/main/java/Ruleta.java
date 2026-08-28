@@ -15,7 +15,14 @@ public class Ruleta {
      * Método principal: inicia el programa llamando al menú.
      */
     public static void main(String[] args) {
-        menu();
+        Scanner in = new Scanner(System.in);
+        int opcion;
+        do {
+            mostrarMenu();
+            opcion = leerOpcion(in);
+            ejecutarOpcion(opcion, in);
+        } while (opcion != 3);
+        in.close();
     }
     /**
      * Controla el flujo principal del programa mostrando

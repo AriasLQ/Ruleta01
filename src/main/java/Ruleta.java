@@ -52,6 +52,10 @@ public class Ruleta {
      */
     public static int leerOpcion(Scanner in) {
 // TODO: Leer y retornar la opción ingresada.
+        while (!in.hasNextInt()) {
+            System.out.print("Entrada inválida. Por favor, ingrese un número: ");
+            in.next(); 
+        }
         return in.nextInt();
     }
     /**
@@ -81,8 +85,20 @@ public class Ruleta {
     public static void iniciarRonda(Scanner in) {
 // TODO: Implementar el flujo completo de una ronda.
         char tipo = leerTipoApuesta(in);
-        System.out.print("Ingrese el monto a apostar: ");
-        int apuesta = in.nextInt();
+
+        int apuesta;
+        do {
+            System.out.print("Ingrese el monto a apostar (mayor a 0): ");
+            while (!in.hasNextInt()) {
+                System.out.print("Monto inválido. Ingrese un número mayor a 0: ");
+                in.next();
+            }
+            apuesta = in.nextInt();
+
+            if (apuesta <= 0) {
+                System.out.println("Error: El monto de la apuesta debe ser mayor a 0.");
+            }
+        } while (apuesta <= 0);
 
         int numero = girarRuleta();
         boolean acerto = evaluarResultado(numero, tipo);

@@ -12,18 +12,12 @@ public class Ruleta {
             1, 3, 5, 7, 9, 12, 14, 16, 18,
             19, 21, 23, 25, 27, 30, 32, 34, 36
     };
-    /**
-     * Método principal: inicia el programa llamando al menú.
-     */
+
     public static void main(String[] args) {
         menu();
     }
-    /**
-     * Controla el flujo principal del programa mostrando
-     * un menú en consola.
-     */
+
     public static void menu() {
-// TODO: Repetir el menú hasta que el usuario elija salir.
         Scanner in = new Scanner(System.in);
         int opcion;
         do {
@@ -33,39 +27,24 @@ public class Ruleta {
         } while (opcion != 3);
         in.close();
     }
-    /**
-     * Muestra en consola las opciones disponibles del menú.
-     */
+
     public static void mostrarMenu() {
-// TODO: Mostrar las opciones disponibles para el usuario.
         System.out.println("\n--- Casino Black Cat ---");
         System.out.println("1. Iniciar ronda");
         System.out.println("2. Ver estadísticas");
         System.out.println("3. Salir");
         System.out.print("Elija una opción: ");
     }
-    /**
-     * Lee la opción elegida por el usuario desde teclado.
-     *
-     * @param in Scanner para entrada por consola.
-     * @return número de opción ingresado.
-     */
+
     public static int leerOpcion(Scanner in) {
-// TODO: Leer y retornar la opción ingresada.
         while (!in.hasNextInt()) {
             System.out.print("Entrada inválida. Por favor, ingrese un número: ");
             in.next(); 
         }
         return in.nextInt();
     }
-    /**
-     * Ejecuta la acción correspondiente a la opción del menú.
-     *
-     * @param opcion opción elegida por el usuario.
-     * @param in Scanner para entrada por consola.
-     */
+
     public static void ejecutarOpcion(int opcion, Scanner in) {
-// TODO: Ejecutar la acción asociada a la opción.
         if (opcion == 1) {
             iniciarRonda(in);
         } else if (opcion == 2) {
@@ -76,14 +55,8 @@ public class Ruleta {
             System.out.println("Opción no válida.");
         }
     }
-    /**
-     * Inicia una ronda de la ruleta: leer apuesta, girar,
-     * evaluar y mostrar resultado.
-     *
-     * @param in Scanner para entrada por consola.
-     */
+
     public static void iniciarRonda(Scanner in) {
-// TODO: Implementar el flujo completo de una ronda.
         char tipo = leerTipoApuesta(in);
 
         int apuesta;
@@ -106,15 +79,8 @@ public class Ruleta {
         registrarResultado(numero, apuesta, acerto);
         mostrarResultado(numero, tipo, apuesta, acerto);
     }
-    /**
-     * Permite al usuario seleccionar el tipo de apuesta
-     * (R/N/P/I).
-     *
-     * @param in Scanner para entrada por consola.
-     * @return el tipo de apuesta elegido.
-     */
+
     public static char leerTipoApuesta(Scanner in) {
-// TODO: Leer y validar el tipo de apuesta.
         char tipo;
         boolean esValido = false;
         do {
@@ -130,27 +96,12 @@ public class Ruleta {
 
         return tipo;
     }
-    /**
-     * Simula el giro de la ruleta generando un número
-     * aleatorio de 0 a 36.
-     *
-     * @return número de la ruleta.
-     */
 
     public static int girarRuleta() {
-// TODO: Generar y retornar un número entre 0 y 36.
         return rng.nextInt(NUMERO_CASILLAS);
     }
-    /**
-     * Evalúa si la apuesta realizada por el jugador
-     * fue acertada.
-     *
-     * @param numero número obtenido en la ruleta.
-     * @param tipo tipo de apuesta elegida.
-     * @return true si acertó, false si perdió.
-     */
+
     public static boolean evaluarResultado(int numero, char tipo) {
-// TODO: Evaluar el resultado según el tipo de apuesta.
         if (numero == 0) return false;
 
         if (tipo == 'P') return numero % 2 == 0;
@@ -159,29 +110,15 @@ public class Ruleta {
         if (tipo == 'N') return !esRojo(numero);
         return false;
     }
-    /**
-     * Determina si un número corresponde a color rojo.
-     *
-     * @param n número de la ruleta.
-     * @return true si es rojo, false en caso contrario.
-     */
+
     public static boolean esRojo(int n) {
-// TODO: Buscar el número en el arreglo numerosRojos.
         for (int i = 0; i < numerosRojos.length; i++) {
             if (numerosRojos[i] == n) return true;
         }
         return false;
     }
-    /**
-     * Registra los resultados de la ronda en los arreglos
-     * de historial.
-     *
-     * @param numero número obtenido en la ruleta.
-     * @param apuesta monto apostado.
-     * @param acierto si el jugador acertó o no.
-     */
+
     public static void registrarResultado(int numero, int apuesta, boolean acierto) {
-// TODO: Guardar los datos sin superar MAX_HISTORIAL.
         if (historialSize < MAX_HISTORIAL) {
             historialNumeros[historialSize] = numero;
             historialApuestas[historialSize] = apuesta;
@@ -191,17 +128,10 @@ public class Ruleta {
             System.out.println("Historial lleno. No se pueden registrar más rondas.");
         }
     }
-    /**
-     * Muestra en consola el resultado de la ronda.
-     *
-     * @param numero número obtenido en la ruleta.
-     * @param tipo tipo de apuesta realizada.
-     * @param monto monto apostado.
-     * @param acierto si el jugador ganó o perdió.
-     */
+
     public static void mostrarResultado(int numero, char tipo, int monto, boolean
             acierto) {
-// TODO: Mostrar los datos y el resultado de la ronda.
+//
         System.out.println("El número ganador es: " + numero);
         if (acierto) {
             System.out.println("¡Felicidades! Has ganado tu apuesta.");
@@ -209,12 +139,8 @@ public class Ruleta {
             System.out.println("Has perdido la apuesta.");
         }
     }
-    /**
-     * Muestra estadísticas generales de todas las
-     * rondas jugadas.
-     */
+
     public static void mostrarEstadisticas() {
-// TODO: Calcular y mostrar las estadísticas acumuladas.
         int montoTotal = 0;
         int totalAciertos = 0;
 

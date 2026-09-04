@@ -144,16 +144,27 @@ public class Ruleta {
         }
     }
 
-    public static void mostrarEstadisticas() {
-        int montoTotal = 0;
-        int totalAciertos = 0;
-
+    public static int calcularMontoTotal() {
+        int total = 0;
         for (int i = 0; i < historialSize; i++) {
-            montoTotal += historialApuestas[i];
+            total += historialApuestas[i];
+        }
+        return total;
+    }
+
+    public static int calcularTotalAciertos() {
+        int aciertos = 0;
+        for (int i = 0; i < historialSize; i++) {
             if (historialAciertos[i]) {
-                totalAciertos++;
+                aciertos++;
             }
         }
+        return aciertos;
+    }
+
+    public static void mostrarEstadisticas() {
+        int montoTotal = calcularMontoTotal();
+        int totalAciertos = calcularTotalAciertos();
 
         System.out.println("\n--- Estadísticas ---");
         System.out.println("Rondas jugadas: " + historialSize);

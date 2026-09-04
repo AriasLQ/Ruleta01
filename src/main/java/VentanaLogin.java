@@ -44,6 +44,8 @@ public class VentanaLogin {
      * Debe centrarla y hacerla visible.
      */
     public void mostrarVentana() {
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
 // TODO: Centrar y mostrar la ventana
     }
     /**

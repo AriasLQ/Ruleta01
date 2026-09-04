@@ -58,7 +58,16 @@ public class Ruleta {
 
     public static void iniciarRonda(Scanner in) {
         char tipo = leerTipoApuesta(in);
+        int apuesta = leerMontoApuesta(in); // <-- Lógica delegada
 
+        int numero = girarRuleta();
+        boolean acerto = evaluarResultado(numero, tipo);
+
+        registrarResultado(numero, apuesta, acerto);
+        mostrarResultado(numero, tipo, apuesta, acerto);
+    }
+
+    public static int leerMontoApuesta(Scanner in) {
         int apuesta;
         do {
             System.out.print("Ingrese el monto a apostar (mayor a 0): ");
@@ -72,12 +81,7 @@ public class Ruleta {
                 System.out.println("Error: El monto de la apuesta debe ser mayor a 0.");
             }
         } while (apuesta <= 0);
-
-        int numero = girarRuleta();
-        boolean acerto = evaluarResultado(numero, tipo);
-
-        registrarResultado(numero, apuesta, acerto);
-        mostrarResultado(numero, tipo, apuesta, acerto);
+        return apuesta;
     }
 
     public static char leerTipoApuesta(Scanner in) {

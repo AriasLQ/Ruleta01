@@ -25,4 +25,16 @@ public class VentanaSaludo {
         btnSalir.addActionListener(e -> System.exit(0));
     }
 
+    public void mostrarVentana(){
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+
+
+    public void iniciarJuego() {
+        frame.dispose();
+        System.out.println("*cambiar mensaje");
+        Ruleta.menu();
+    }
+
 }

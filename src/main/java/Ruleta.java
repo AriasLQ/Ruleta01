@@ -17,6 +17,7 @@ public class Ruleta {
         menu();
     }
 
+
     public static void menu() {
         Scanner in = new Scanner(System.in);
         int opcion;

@@ -77,6 +77,13 @@ public class VentanaLogin {
      */
     private String validarCredenciales(String u, String p) {
 // TODO: Recorrer la lista y validar las credenciales
+        for (Object obj : USUARIOS) {
+            Usuario usr = (Usuario) obj;
+
+            if (usr.validarCredenciales(u, p)) {
+                return usr.getNombre();
+            }
+        }
         return "";
     }
     /**

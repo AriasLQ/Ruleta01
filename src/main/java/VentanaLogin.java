@@ -54,6 +54,17 @@ public class VentanaLogin {
      * ventana o mostrar un mensaje de error.
      */
     private void login() {
+        String user = txtUsuario.getText();
+        String password = new String(txtClave.getPassword());
+
+        String nombreUsuario = validarCredenciales(user, password);
+
+        if (!nombreUsuario.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "¡Acceso concedido! Bienvenido, " + nombreUsuario);
+            frame.dispose();
+        } else {
+            JOptionPane.showMessageDialog(frame, "Credenciales incorrectas.", "Error de Acceso", JOptionPane.ERROR_MESSAGE);
+        }
 // TODO: Implementar la lógica de inicio de sesión
     }
     /**

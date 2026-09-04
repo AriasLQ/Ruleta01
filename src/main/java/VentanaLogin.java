@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +13,29 @@ public class VentanaLogin {
     private final JLabel lblClave = new JLabel("Clave:");
     private final JPasswordField txtClave = new JPasswordField();
     private final JButton btnIngresar = new JButton("Ingresar");
+    private final JButton btnRegistrar = new JButton("Registrar");
     /**
      * Constructor que inicializa la ventana de inicio de sesión.
      * Configura sus componentes y eventos.
      */
     public VentanaLogin() {
+        if (USUARIOS.isEmpty()) {
+            USUARIOS.add(new Usuario("admin", "administrable", "admin"));
+            USUARIOS.add(new Usuario("", "user", "user"));
+        }
+        frame.setSize(400, 400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new FlowLayout());
+
+        frame.add(lblUsuario);
+        frame.add(txtUsuario);
+        frame.add(lblClave);
+        frame.add(txtClave);
+        frame.add(btnIngresar);
+        frame.add(btnRegistrar);
+
+        btnIngresar.addActionListener(e -> login());
+        btnRegistrar.addActionListener(e -> abrirRegistro());
 // TODO: Agregar los usuarios iniciales a la lista
 // TODO: Inicializar y configurar la ventana
     }

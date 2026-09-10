@@ -36,10 +36,16 @@ public class VentanaRegistro {
     }
 
 
-    public void registrarNuevoUsuario(){
+    public void registrarNuevoUsuario() {
+        String nombre = txtNombre.getText();
+        String usuario = txtUsuario.getText();
+        String clave = new String(txtClave.getPassword());
 
+        if (nombre.trim().isEmpty() || usuario.trim().isEmpty() || clave.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
     }
-
 
     private void volverAlLogin(){
 

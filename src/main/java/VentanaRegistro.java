@@ -52,6 +52,7 @@ public class VentanaRegistro {
     }
 
     private void volverAlLogin(){
-
+        frame.dispose();
+        new VentanaLogin().mostrarVentana();
     }
 }

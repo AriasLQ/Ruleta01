@@ -45,6 +45,10 @@ public class VentanaRegistro {
             JOptionPane.showMessageDialog(frame, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        VentanaLogin.USUARIOS.add(new Usuario(usuario, clave, nombre));
+
+        JOptionPane.showMessageDialog(frame, "Registro exitoso. Por favor, inicia sesión.");
+        volverAlLogin();
     }
 
     private void volverAlLogin(){

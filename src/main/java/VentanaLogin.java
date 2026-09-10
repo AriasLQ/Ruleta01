@@ -92,6 +92,7 @@ public class VentanaLogin {
      */
     private void abrirRegistro() {
 // TODO: Cerrar la ventana actual y abrir la ventana de registro
-        
+        frame.dispose();
+        new VentanaRegistro().mostrarVentana();
     }
 }

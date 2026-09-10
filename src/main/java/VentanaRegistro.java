@@ -30,9 +30,9 @@ public class VentanaRegistro {
         btnVolver.addActionListener(e -> volverAlLogin());
     }
 
-
     public void mostrarVentana(){
-
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 
 

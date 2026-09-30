@@ -62,8 +62,8 @@ public class VentanaLogin {
         if (!nombreUsuario.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "¡Acceso concedido! Bienvenido, " + nombreUsuario);
             frame.dispose();
-        } else {
-            JOptionPane.showMessageDialog(frame, "Credenciales incorrectas.", "Error de Acceso", JOptionPane.ERROR_MESSAGE);
+
+            new VentanaMenu(nombreUsuario).mostrarVentana();
         }
 // TODO: Implementar la lógica de inicio de sesión
     }
@@ -95,4 +95,6 @@ public class VentanaLogin {
         frame.dispose();
         new VentanaRegistro().mostrarVentana();
     }
+
+
 }

@@ -39,4 +39,5 @@ public class VentanaMenu {
 
         btnSalir.addActionListener(e -> System.exit(0));
     }
+
 }

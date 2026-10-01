@@ -40,4 +40,8 @@ public class VentanaMenu {
         btnSalir.addActionListener(e -> System.exit(0));
     }
 
+    private void abrirVentanaJuego() {
+        frame.dispose(); 
+        new VentanaRuleta(nombreUsuario).mostrarVentana(); // Abre el juego
+    }
 }

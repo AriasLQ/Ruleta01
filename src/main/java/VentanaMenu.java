@@ -41,7 +41,7 @@ public class VentanaMenu {
     }
 
     private void abrirVentanaJuego() {
-        frame.dispose(); 
-        new VentanaRuleta(nombreUsuario).mostrarVentana(); // Abre el juego
+        frame.dispose();
+        new VentanaRuleta(nombreUsuario).mostrarVentana(); 
     }
 }

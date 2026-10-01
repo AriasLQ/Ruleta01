@@ -51,5 +51,37 @@ public class VentanaRuleta {
         frame.add(new JLabel("Jugador: " + nombreUsuario, SwingConstants.CENTER), BorderLayout.NORTH);
         frame.add(panelFormulario, BorderLayout.CENTER);
         frame.add(panelSur, BorderLayout.SOUTH);
+        btnGirar.addActionListener(e -> jugarRonda());
+        btnVolver.addActionListener(e -> volverAlMenu());
+    }
+
+    private void jugarRonda() {
+        int monto;
+        try {
+            monto = Integer.parseInt(txtMonto.getText());
+            if (monto <= 0) {
+                JOptionPane.showMessageDialog(frame, "El monto debe ser mayor a 0.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(frame, "Ingrese un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int index = cmbTipoApuesta.getSelectedIndex();
+        char tipo = (index == 0) ? 'P' : (index == 1) ? 'I' : (index == 2) ? 'R' : 'N';
+
+        int numeroGanador = Ruleta.girar();
+        boolean acierto = Ruleta.evaluarResultado(numeroGanador, tipo);
+        Ruleta.registrarJugada(numeroGanador, monto, acierto);
+
+        String mensaje = "Salió el número: " + numeroGanador + " | " + (acierto ? "¡GANASTE!" : "PERDISTE");
+        lblResultado.setText(mensaje);
+        lblResultado.setForeground(acierto ? new Color(0, 153, 0) : Color.RED);
+    }
+
+    private void volverAlMenu() {
+        frame.dispose();
+        new VentanaMenu(nombreUsuario).mostrarVentana();
     }
 }

@@ -10,6 +10,8 @@ public class VentanaMenu {
         frame.setSize(500, 250);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout(10, 10));
+
+        configurarVentana();
     }
 
     public void mostrarVentana() {
@@ -42,6 +44,6 @@ public class VentanaMenu {
 
     private void abrirVentanaJuego() {
         frame.dispose();
-        new VentanaRuleta(nombreUsuario).mostrarVentana(); 
+        new VentanaRuleta(nombreUsuario).mostrarVentana();
     }
 }

@@ -58,12 +58,13 @@ public class VentanaLogin {
         String password = new String(txtClave.getPassword());
 
         String nombreUsuario = validarCredenciales(user, password);
-
         if (!nombreUsuario.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "¡Acceso concedido! Bienvenido, " + nombreUsuario);
             frame.dispose();
 
             new VentanaMenu(nombreUsuario).mostrarVentana();
+        } else {
+            JOptionPane.showMessageDialog(frame, "Usuario o contraseña incorrectos.", "Error de Login", JOptionPane.ERROR_MESSAGE);
         }
 // TODO: Implementar la lógica de inicio de sesión
     }

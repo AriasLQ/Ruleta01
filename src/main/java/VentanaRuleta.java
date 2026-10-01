@@ -1,26 +1,22 @@
 import javax.swing.*;
 import java.awt.*;
 
-
-
 public class VentanaRuleta {
     private final JFrame frame = new JFrame("Juego - Casino Black Cat");
     private final String nombreUsuario;
+
+    private JComboBox<String> cmbTipoApuesta;
+    private JTextField txtMonto;
+    private JLabel lblResultado;
 
     public VentanaRuleta(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
         frame.setSize(450, 250);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout(10, 10));
-    }
 
-    public void mostrarVentana() {
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        configurarVentana();
     }
-    private JComboBox<String> cmbTipoApuesta;
-    private JTextField txtMonto;
-    private JLabel lblResultado;
 
     private void configurarVentana() {
         JPanel panelFormulario = new JPanel(new GridLayout(2, 2, 10, 10));
@@ -51,8 +47,15 @@ public class VentanaRuleta {
         frame.add(new JLabel("Jugador: " + nombreUsuario, SwingConstants.CENTER), BorderLayout.NORTH);
         frame.add(panelFormulario, BorderLayout.CENTER);
         frame.add(panelSur, BorderLayout.SOUTH);
+
+        //
         btnGirar.addActionListener(e -> jugarRonda());
         btnVolver.addActionListener(e -> volverAlMenu());
+    }
+
+    public void mostrarVentana() {
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 
     private void jugarRonda() {

@@ -3,19 +3,28 @@ package Modelo;
 import java.util.Random;
 
 public class Ruleta {
-    public static final int NUMERO_CASILLAS = 37;
-    public static final int MAX_HISTORIAL = 100;
+    private final int NUMERO_CASILLAS = 37;
+    private final int MAX_HISTORIAL = 100;
 
-    public static int[] historialNumeros = new int[MAX_HISTORIAL];
-    public static int[] historialApuestas = new int[MAX_HISTORIAL];
-    public static boolean[] historialAciertos = new boolean[MAX_HISTORIAL];
-    public static int historialSize = 0;
+    private int[] historialNumeros;
+    private int[] historialApuestas;
+    private boolean[] historialAciertos;
+    private int historialSize;
 
-    public static Random rng = new Random();
-    public static int[] numerosRojos = {
-            1, 3, 5, 7, 9, 12, 14, 16, 18,
-            19, 21, 23, 25, 27, 30, 32, 34, 36
-    };
+    private Random rng;
+    private int[] numerosRojos;
+
+    public Ruleta() {
+        this.historialNumeros = new int[MAX_HISTORIAL];
+        this.historialApuestas = new int[MAX_HISTORIAL];
+        this.historialAciertos = new boolean[MAX_HISTORIAL];
+        this.historialSize = 0;
+        this.rng = new Random();
+        this.numerosRojos = new int[]{
+                1, 3, 5, 7, 9, 12, 14, 16, 18,
+                19, 21, 23, 25, 27, 30, 32, 34, 36
+        };
+    }
 
     public static int girar() {
         return rng.nextInt(NUMERO_CASILLAS);

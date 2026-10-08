@@ -26,11 +26,11 @@ public class Ruleta {
         };
     }
 
-    public static int girar() {
+    public int girar() {
         return rng.nextInt(NUMERO_CASILLAS);
     }
 
-    public static boolean evaluarResultado(int numero, char tipo) {
+    public boolean evaluarResultado(int numero, char tipo) {
         if (numero == 0) return false;
         if (tipo == 'P') return numero % 2 == 0;
         if (tipo == 'I') return numero % 2 != 0;
@@ -39,14 +39,14 @@ public class Ruleta {
         return false;
     }
 
-    private static boolean esRojo(int n) {
+    private boolean esRojo(int n) {
         for (int i = 0; i < numerosRojos.length; i++) {
             if (numerosRojos[i] == n) return true;
         }
         return false;
     }
 
-    public static boolean registrarJugada(int numero, int apuesta, boolean acierto) {
+    public boolean registrarJugada(int numero, int apuesta, boolean acierto) {
         if (historialSize < MAX_HISTORIAL) {
             historialNumeros[historialSize] = numero;
             historialApuestas[historialSize] = apuesta;

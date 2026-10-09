@@ -1,20 +1,26 @@
 package Vista;
 
-import Modelo.Ruleta;
+import Controlador.RuletaController;
+import Controlador.SessionController;
+import Modelo.Resultado;
+import Modelo.TipoApuesta;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class VentanaRuleta {
     private final JFrame frame = new JFrame("Juego - Casino Black Cat");
-    private final String nombreUsuario;
+    private SessionController session;
+    private RuletaController ruletaController;
 
     private JComboBox<String> cmbTipoApuesta;
     private JTextField txtMonto;
     private JLabel lblResultado;
 
-    public VentanaRuleta(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public VentanaRuleta(SessionController session) {
+        this.session = session;
+        this.ruletaController = new RuletaController();
+
         frame.setSize(450, 250);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout(10, 10));
@@ -48,11 +54,10 @@ public class VentanaRuleta {
         panelSur.add(panelBotones, BorderLayout.NORTH);
         panelSur.add(lblResultado, BorderLayout.SOUTH);
 
-        frame.add(new JLabel("Jugador: " + nombreUsuario, SwingConstants.CENTER), BorderLayout.NORTH);
+        frame.add(new JLabel("Jugador: " + session.getNombreUsuario(), SwingConstants.CENTER), BorderLayout.NORTH);
         frame.add(panelFormulario, BorderLayout.CENTER);
         frame.add(panelSur, BorderLayout.SOUTH);
 
-        //
         btnGirar.addActionListener(e -> jugarRonda());
         btnVolver.addActionListener(e -> volverAlMenu());
     }
@@ -76,19 +81,19 @@ public class VentanaRuleta {
         }
 
         int index = cmbTipoApuesta.getSelectedIndex();
-        char tipo = (index == 0) ? 'P' : (index == 1) ? 'I' : (index == 2) ? 'R' : 'N';
+        TipoApuesta tipo = (index == 0) ? TipoApuesta.PAR :
+                (index == 1) ? TipoApuesta.IMPAR :
+                (index == 2) ? TipoApuesta.ROJO : TipoApuesta.NEGRO;
 
-        int numeroGanador = Ruleta.girar();
-        boolean acierto = Ruleta.evaluarResultado(numeroGanador, tipo);
-        Ruleta.registrarJugada(numeroGanador, monto, acierto);
+        Resultado resultado = ruletaController.realizarApuesta(monto, tipo);
 
-        String mensaje = "Salió el número: " + numeroGanador + " | " + (acierto ? "¡GANASTE!" : "PERDISTE");
+        String mensaje = "Salió el número: " + resultado.getNumeroGanador() + " | " + (resultado.isAcierto() ? "¡GANASTE!" : "PERDISTE");
         lblResultado.setText(mensaje);
-        lblResultado.setForeground(acierto ? new Color(0, 153, 0) : Color.RED);
+        lblResultado.setForeground(resultado.isAcierto() ? new Color(0, 153, 0) : Color.RED);
     }
 
     private void volverAlMenu() {
         frame.dispose();
-        new VentanaMenu(nombreUsuario).mostrarVentana();
+        new VentanaMenu(session).mostrarVentana();
     }
 }

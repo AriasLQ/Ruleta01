@@ -1,7 +1,6 @@
 package Vista;
 
-import Modelo.Usuario;
-
+import Controlador.SessionController;
 import javax.swing.*;
 import java.awt.*;
 
@@ -16,7 +15,11 @@ public class VentanaRegistro {
     private final JButton btnRegistrar = new JButton("Registrar");
     private final JButton btnVolver = new JButton("Volver");
 
-    public VentanaRegistro() {
+    private SessionController session;
+
+    public VentanaRegistro(SessionController session) {
+        this.session = session;
+
         frame.setSize(300, 250);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout());
@@ -39,7 +42,6 @@ public class VentanaRegistro {
         frame.setVisible(true);
     }
 
-
     public void registrarNuevoUsuario() {
         String nombre = txtNombre.getText();
         String usuario = txtUsuario.getText();
@@ -49,14 +51,18 @@ public class VentanaRegistro {
             JOptionPane.showMessageDialog(frame, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        VentanaLogin.USUARIOS.add(new Usuario(usuario, clave, nombre));
 
-        JOptionPane.showMessageDialog(frame, "Registro exitoso. Por favor, inicia sesión.");
-        volverAlLogin();
+        try {
+            session.registrarUsuario(usuario, clave, nombre);
+            JOptionPane.showMessageDialog(frame, "Registro exitoso. Por favor, inicia sesión.");
+            volverAlLogin();
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(frame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void volverAlLogin(){
         frame.dispose();
-        new VentanaLogin().mostrarVentana();
+        new VentanaLogin(session).mostrarVentana();
     }
 }

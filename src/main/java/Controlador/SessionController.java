@@ -17,4 +17,20 @@ public class SessionController {
         if (usuarioActual == null) return false;
         return usuarioActual.validarCredenciales(usuario, clave);
     }
+    
+    public boolean hayUsuario() {
+        return usuarioActual != null;
+    }
+
+    public String getNombreUsuario() {
+        return hayUsuario() ? usuarioActual.getNombre() : "";
+    }
+
+    public Usuario getUsuarioActual() {
+        return usuarioActual;
+    }
+
+    public void cerrarSesion() {
+        usuarioActual = null;
+    }
 }

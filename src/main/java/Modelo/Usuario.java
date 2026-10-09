@@ -16,7 +16,13 @@ public class Usuario {
     public Usuario() {
         this("invitado", "", "Invitado");
     }
+    public boolean validarCredenciales(String u, String p) {
+        return this.username.equals(u) && this.password.equals(p);
+    }
 
+    public String getNombre() {
+        return this.nombre;
+    }
     public void setNombre(String nombre) {
         if (nombre != null && !nombre.trim().isEmpty()) {
             this.nombre = nombre;
@@ -25,5 +31,13 @@ public class Usuario {
 
     public int getSaldo() {
         return this.saldo;
+    }
+
+    public boolean depositar(int monto) {
+        if (monto > 0) {
+            this.saldo += monto;
+            return true;
+        }
+        return false;
     }
 }

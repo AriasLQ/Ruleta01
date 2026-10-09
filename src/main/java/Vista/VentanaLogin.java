@@ -1,5 +1,6 @@
 package Vista;
 
+import Controlador.SessionController;
 import Modelo.Usuario;
 
 import javax.swing.*;
@@ -18,11 +19,9 @@ public class VentanaLogin {
     private final JPasswordField txtClave = new JPasswordField();
     private final JButton btnIngresar = new JButton("Ingresar");
     private final JButton btnRegistrar = new JButton("Registrar");
-    /**
-     * Constructor que inicializa la ventana de inicio de sesión.
-     * Configura sus componentes y eventos.
-     */
-    public VentanaLogin() {
+    private SessionController session;
+    public VentanaLogin(SessionController session) {
+        this.session = session;
         if (USUARIOS.isEmpty()) {
             USUARIOS.add(new Usuario("admin", "administrable", "admin"));
             USUARIOS.add(new Usuario("", "user", "user"));
@@ -40,23 +39,14 @@ public class VentanaLogin {
 
         btnIngresar.addActionListener(e -> login());
         btnRegistrar.addActionListener(e -> abrirRegistro());
-// TODO: Agregar los usuarios iniciales a la lista
-// TODO: Inicializar y configurar la ventana
+
     }
-    /**
-     * Muestra la ventana en pantalla.
-     * Debe centrarla y hacerla visible.
-     */
+
     public void mostrarVentana() {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-// TODO: Centrar y mostrar la ventana
     }
-    /**
-     * Gestiona el inicio de sesión al presionar el botón.
-     * Debe validar las credenciales ingresadas y abrir la siguiente
-     * ventana o mostrar un mensaje de error.
-     */
+
     private void login() {
         String user = txtUsuario.getText();
         String password = new String(txtClave.getPassword());
@@ -70,18 +60,9 @@ public class VentanaLogin {
         } else {
             JOptionPane.showMessageDialog(frame, "Usuario o contraseña incorrectos.", "Error de Login", JOptionPane.ERROR_MESSAGE);
         }
-// TODO: Implementar la lógica de inicio de sesión
     }
-    /**
-     * Valida las credenciales ingresadas utilizando la lista de usuarios.
-     *
-     * @param u nombre de usuario ingresado
-     * @param p contraseña ingresada
-     * @return el nombre del usuario si las credenciales son válidas o una cadena vacía
-    si no existe una coincidencia
-     */
+
     private String validarCredenciales(String u, String p) {
-// TODO: Recorrer la lista y validar las credenciales
         for (Object obj : USUARIOS) {
             Usuario usr = (Usuario) obj;
 
@@ -91,15 +72,9 @@ public class VentanaLogin {
         }
         return "";
     }
-    /**
-     * Abre la ventana de registro para crear un nuevo usuario.
-     * Debe cerrar la ventana actual e invocar a VentanaRegistro.
-     */
+
     private void abrirRegistro() {
-// TODO: Cerrar la ventana actual y abrir la ventana de registro
         frame.dispose();
         new VentanaRegistro().mostrarVentana();
     }
-
-
 }

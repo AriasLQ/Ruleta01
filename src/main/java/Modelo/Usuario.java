@@ -12,10 +12,18 @@ public class Usuario {
         this.nombre = nombre;
         this.saldo = 0;
     }
-    public boolean validarCredenciales(String u, String p) {
-        return this.username.equals(u) && this.password.equals(p);
+
+    public Usuario() {
+        this("invitado", "", "Invitado");
     }
-    public String getNombre() {
-        return nombre;
+
+    public void setNombre(String nombre) {
+        if (nombre != null && !nombre.trim().isEmpty()) {
+            this.nombre = nombre;
+        }
+    }
+
+    public int getSaldo() {
+        return this.saldo;
     }
 }

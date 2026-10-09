@@ -30,13 +30,15 @@ public class Ruleta {
         return rng.nextInt(NUMERO_CASILLAS);
     }
 
-    public boolean evaluarResultado(int numero, char tipo) {
+    public boolean evaluarResultado(int numero, TipoApuesta tipo) {
         if (numero == 0) return false;
-        if (tipo == 'P') return numero % 2 == 0;
-        if (tipo == 'I') return numero % 2 != 0;
-        if (tipo == 'R') return esRojo(numero);
-        if (tipo == 'N') return !esRojo(numero);
-        return false;
+
+        return switch (tipo) {
+            case ROJO -> esRojo(numero);
+            case NEGRO -> !esRojo(numero);
+            case PAR -> numero % 2 == 0;
+            case IMPAR -> numero % 2 != 0;
+        };
     }
 
     private boolean esRojo(int n) {

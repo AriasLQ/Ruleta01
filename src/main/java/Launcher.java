@@ -1,3 +1,4 @@
+import Controlador.SessionController;
 import Vista.VentanaLogin;
 import com.formdev.flatlaf.intellijthemes.FlatDarkPurpleIJTheme;
 import javax.swing.*;
@@ -10,7 +11,11 @@ public class Launcher {
             e.printStackTrace();
         }
 
-        VentanaLogin ventanaLogin = new VentanaLogin();
+        // Se crea la única sesión compartida
+        SessionController session = new SessionController();
+
+        // Se inyecta la sesión en la ventana de login
+        VentanaLogin ventanaLogin = new VentanaLogin(session);
         ventanaLogin.mostrarVentana();
     }
 }

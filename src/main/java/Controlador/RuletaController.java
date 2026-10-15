@@ -16,9 +16,10 @@ public class RuletaController {
     public Resultado realizarApuesta(int monto, TipoApuesta tipo) {
         int numeroGanador = ruleta.girar();
         boolean acierto = ruleta.evaluarResultado(numeroGanador, tipo);
-        ruleta.registrarJugada(numeroGanador, monto, acierto);
 
         Resultado resultado = new Resultado(numeroGanador, acierto, tipo);
+        ruleta.registrarJugada(resultado);
+
         if (session.hayUsuario()) {
             session.getUsuarioActual().agregarResultado(resultado);
         }

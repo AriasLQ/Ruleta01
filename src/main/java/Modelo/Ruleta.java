@@ -6,18 +6,14 @@ public class Ruleta {
     private final int NUMERO_CASILLAS = 37;
     private final int MAX_HISTORIAL = 100;
 
-    private int[] historialNumeros;
-    private int[] historialApuestas;
-    private boolean[] historialAciertos;
+    private Resultado[] resultados;
     private int historialSize;
 
     private Random rng;
     private int[] numerosRojos;
 
     public Ruleta() {
-        this.historialNumeros = new int[MAX_HISTORIAL];
-        this.historialApuestas = new int[MAX_HISTORIAL];
-        this.historialAciertos = new boolean[MAX_HISTORIAL];
+        this.resultados = new Resultado[MAX_HISTORIAL];
         this.historialSize = 0;
         this.rng = new Random();
         this.numerosRojos = new int[]{
@@ -48,11 +44,9 @@ public class Ruleta {
         return false;
     }
 
-    public boolean registrarJugada(int numero, int apuesta, boolean acierto) {
+    public boolean registrarJugada(Resultado resultado) {
         if (historialSize < MAX_HISTORIAL) {
-            historialNumeros[historialSize] = numero;
-            historialApuestas[historialSize] = apuesta;
-            historialAciertos[historialSize] = acierto;
+            resultados[historialSize] = resultado;
             historialSize++;
             return true;
         }

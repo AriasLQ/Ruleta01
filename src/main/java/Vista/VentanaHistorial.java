@@ -1,15 +1,21 @@
 package Vista;
 
+import Controlador.ResultadoController;
 import Controlador.SessionController;
+import Modelo.Resultado;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class VentanaHistorial {
     private final JFrame frame = new JFrame("Historial - Casino Black Cat");
     private SessionController session;
+    private ResultadoController resultadoController;
 
     public VentanaHistorial(SessionController session) {
         this.session = session;
+        this.resultadoController = new ResultadoController(session);
 
         frame.setSize(400, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,7 +30,20 @@ public class VentanaHistorial {
 
         JTextArea txtAreaHistorial = new JTextArea();
         txtAreaHistorial.setEditable(false);
-        txtAreaHistorial.setText("Cargando historial...");
+
+        List<Resultado> historial = resultadoController.obtenerHistorial();
+        if (historial.isEmpty()) {
+            txtAreaHistorial.setText("No hay jugadas registradas aún.");
+        } else {
+            StringBuilder sb = new StringBuilder();
+            for (Resultado r : historial) {
+                sb.append("Número: ").append(r.getNumeroGanador())
+                        .append(" | Apuesta: ").append(r.getTipoApuesta())
+                        .append(" | ").append(r.isAcierto() ? "GANÓ" : "PERDIÓ")
+                        .append("\n");
+            }
+            txtAreaHistorial.setText(sb.toString());
+        }
 
         JScrollPane scrollPane = new JScrollPane(txtAreaHistorial);
         scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));

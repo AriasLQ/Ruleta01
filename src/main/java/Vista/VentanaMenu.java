@@ -45,13 +45,18 @@ public class VentanaMenu {
         frame.add(lblUsuario, BorderLayout.SOUTH);
 
         btnJugar.addActionListener(e -> abrirVentanaJuego());
-        btnHistorial.addActionListener(e -> JOptionPane.showMessageDialog(frame, "La ventana de historial se implementará a futuro."));
+        btnHistorial.addActionListener(e -> abrirVentanaHistorial());
         btnSalir.addActionListener(e -> cerrarSesion());
     }
 
     private void abrirVentanaJuego() {
         frame.dispose();
         new VentanaRuleta(session).mostrarVentana();
+    }
+
+    private void abrirVentanaHistorial() {
+        frame.dispose();
+        new VentanaHistorial(session).mostrarVentana();
     }
 
     private void cerrarSesion() {

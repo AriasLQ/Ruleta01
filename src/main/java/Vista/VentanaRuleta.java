@@ -19,7 +19,7 @@ public class VentanaRuleta {
 
     public VentanaRuleta(SessionController session) {
         this.session = session;
-        this.ruletaController = new RuletaController();
+        this.ruletaController = new RuletaController(session);
 
         frame.setSize(450, 250);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

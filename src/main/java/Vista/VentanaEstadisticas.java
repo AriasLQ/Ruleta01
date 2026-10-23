@@ -1,12 +1,15 @@
 package Vista;
 
+import Controlador.EstadisticasController;
 import Controlador.SessionController;
+import Modelo.Estadisticas;
 import javax.swing.*;
 import java.awt.*;
 
 public class VentanaEstadisticas {
     private final JFrame frame = new JFrame("Estadísticas - Casino Black Cat");
     private SessionController session;
+    private EstadisticasController estadisticasController;
 
     private JLabel lblTotalJugadas;
     private JLabel lblVictorias;
@@ -15,11 +18,14 @@ public class VentanaEstadisticas {
 
     public VentanaEstadisticas(SessionController session) {
         this.session = session;
+        this.estadisticasController = new EstadisticasController(session);
+
         frame.setSize(400, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout(10, 10));
 
         configurarVentana();
+        cargarDatos();
     }
 
     private void configurarVentana() {
@@ -39,12 +45,34 @@ public class VentanaEstadisticas {
         panelStats.add(lblRachaMaxima);
         panelStats.add(lblTipoMasJugado);
 
+        JPanel panelSur = new JPanel();
+        JButton btnVolver = new JButton("Volver al Menú");
+        btnVolver.addActionListener(e -> volverAlMenu());
+        panelSur.add(btnVolver);
+
         frame.add(lblTitulo, BorderLayout.NORTH);
         frame.add(panelStats, BorderLayout.CENTER);
+        frame.add(panelSur, BorderLayout.SOUTH);
+    }
+
+    private void cargarDatos() {
+        Estadisticas stats = estadisticasController.obtenerEstadisticasUsuario();
+
+        lblTotalJugadas.setText("Total de jugadas: " + stats.getTotalJugadas());
+        lblVictorias.setText(String.format("Victorias (Porcentaje): %d (%.2f%%)", stats.getVictorias(), stats.getPorcentajeVictorias()));
+        lblRachaMaxima.setText("Racha máxima: " + stats.getRachaMaxima());
+
+        String tipo = (stats.getTipoMasJugado() != null) ? stats.getTipoMasJugado().name() : "Ninguno";
+        lblTipoMasJugado.setText("Tipo más jugado: " + tipo);
     }
 
     public void mostrarVentana() {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+
+    private void volverAlMenu() {
+        frame.dispose();
+        new VentanaMenu(session).mostrarVentana();
     }
 }

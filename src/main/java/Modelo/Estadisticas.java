@@ -64,4 +64,28 @@ public class Estadisticas {
         }
         this.rachaMaxima = rachaMax;
     }
+
+    public void calcularTipoMasJugado(List<Resultado> historial) {
+        if (historial == null || historial.isEmpty()) {
+            this.tipoMasJugado = null;
+            return;
+        }
+
+        int[] conteo = new int[TipoApuesta.values().length];
+        for (Resultado r : historial) {
+            if (r.getTipoApuesta() != null) {
+                conteo[r.getTipoApuesta().ordinal()]++;
+            }
+        }
+
+        int max = -1;
+        TipoApuesta masJugado = null;
+        for (TipoApuesta tipo : TipoApuesta.values()) {
+            if (conteo[tipo.ordinal()] > max) {
+                max = conteo[tipo.ordinal()];
+                masJugado = tipo;
+            }
+        }
+        this.tipoMasJugado = masJugado;
+    }
 }

@@ -42,4 +42,26 @@ public class Estadisticas {
             this.porcentajeVictorias = 0.0;
         }
     }
+
+    public void calcularRachaMaxima(List<Resultado> historial) {
+        if (historial == null || historial.isEmpty()) {
+            this.rachaMaxima = 0;
+            return;
+        }
+
+        int rachaActual = 0;
+        int rachaMax = 0;
+
+        for (Resultado r : historial) {
+            if (r.isAcierto()) {
+                rachaActual++;
+                if (rachaActual > rachaMax) {
+                    rachaMax = rachaActual;
+                }
+            } else {
+                rachaActual = 0;
+            }
+        }
+        this.rachaMaxima = rachaMax;
+    }
 }

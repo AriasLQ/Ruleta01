@@ -88,4 +88,24 @@ public class Estadisticas {
         }
         this.tipoMasJugado = masJugado;
     }
+
+    public int getTotalJugadas() {
+        return totalJugadas;
+    }
+
+    public int getVictorias() {
+        return victorias;
+    }
+
+    public double getPorcentajeVictorias() {
+        return porcentajeVictorias;
+    }
+
+    public int getRachaMaxima() {
+        return rachaMaxima;
+    }
+
+    public TipoApuesta getTipoMasJugado() {
+        return tipoMasJugado;
+    }
 }

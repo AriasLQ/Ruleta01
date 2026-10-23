@@ -24,13 +24,15 @@ public class VentanaMenu {
     }
 
     private void configurarVentana() {
-        JPanel panelBotones = new JPanel(new GridLayout(3, 1, 5, 5));
+        JPanel panelBotones = new JPanel(new GridLayout(4, 1, 5, 5));
         JButton btnJugar = new JButton("Jugar");
         JButton btnHistorial = new JButton("Historial");
+        JButton btnEstadisticas = new JButton("Estadísticas");
         JButton btnSalir = new JButton("Cerrar Sesión");
 
         panelBotones.add(btnJugar);
         panelBotones.add(btnHistorial);
+        panelBotones.add(btnEstadisticas);
         panelBotones.add(btnSalir);
 
         JTextArea txtInfo = new JTextArea("Bienvenido/a al menú principal.\n\nA la izquierda tienes las opciones de juego.");

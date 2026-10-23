@@ -48,6 +48,7 @@ public class VentanaMenu {
 
         btnJugar.addActionListener(e -> abrirVentanaJuego());
         btnHistorial.addActionListener(e -> abrirVentanaHistorial());
+        btnEstadisticas.addActionListener(e -> abrirVentanaEstadisticas());
         btnSalir.addActionListener(e -> cerrarSesion());
     }
 
@@ -59,6 +60,11 @@ public class VentanaMenu {
     private void abrirVentanaHistorial() {
         frame.dispose();
         new VentanaHistorial(session).mostrarVentana();
+    }
+
+    private void abrirVentanaEstadisticas() {
+        frame.dispose();
+        new VentanaEstadisticas(session).mostrarVentana();
     }
 
     private void cerrarSesion() {

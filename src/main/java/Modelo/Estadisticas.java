@@ -34,4 +34,12 @@ public class Estadisticas {
         }
         this.victorias = contVictorias;
     }
+
+    public void calcularPorcentajeVictorias() {
+        if (this.totalJugadas > 0) {
+            this.porcentajeVictorias = ((double) this.victorias / this.totalJugadas) * 100.0;
+        } else {
+            this.porcentajeVictorias = 0.0;
+        }
+    }
 }
